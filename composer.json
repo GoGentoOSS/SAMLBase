@@ -22,12 +22,6 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
     },
-    "repositories": {
-        "xmlseclibs": {
-            "type": "git",
-            "url": "git@github.com:robrichards/xmlseclibs.git"
-        }
-    },
     "autoload": {
         "psr-0": {
             "Wizkunde\\SAMLBase": "src/"

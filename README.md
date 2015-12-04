@@ -13,7 +13,7 @@ You can sign requests with a certificate. The response can be read, decrypted, v
 
 Thats all!
 
-## Roadmap (Last updated 12-01-2015)
+## Roadmap (Last updated 05-12-2015)
 
     BASICS we have achieved so far
         1. Resolve metadata from an IDP into a PHP array that we can work with
@@ -26,21 +26,21 @@ Thats all!
         8. Handle a Single Logout Request
         9. Support SOAP and Artifact binding
 
-    01-02-2015
+    01-01-2016
         1. Increase the amount of Unit Tests
         2. Add Scoping and Conditions to AuthnRequest
         3. Support for SP Initiated Artifact Resolution
     
-    01-03-2015
+    01-02-2016
         1. Add AttributeQuery and AttributeResponse
         2. Find a better way to store the SessionID and RelayState
         3. Apply Assertions
         
-    01-04-2015
+    01-02-2016
         1. Support multiple identifier types (BaseID, NameID, EncryptedID)
         2. Add Statement Element support
         
-    01-05-2015
+    01-02-2016
         1. Add Advice Element support
         
     FUTURE

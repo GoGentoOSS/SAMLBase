@@ -14,13 +14,10 @@
         }
     ],
     "require": {
-        "symfony/dependency-injection": ">=3.0",
+        "symfony/dependency-injection": ">=2.7",
         "robrichards/xmlseclibs": ">=2.0",
-        "guzzle/guzzle": "3.9.*@dev",
-        "twig/twig": "1.22.*@dev"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "3.7.*"
+        "guzzlehttp/guzzle": ">=6.1",
+        "twig/twig": ">=1.23"
     },
     "autoload": {
         "psr-0": {

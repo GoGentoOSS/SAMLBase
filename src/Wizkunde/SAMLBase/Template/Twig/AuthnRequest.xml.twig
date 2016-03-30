@@ -6,42 +6,15 @@
                     ForceAuthn="{{ ForceAuthn }}"
                     IsPassive="{{ IsPassive }}"
                     ProtocolBinding="{{ ProtocolBinding }}"
-                    AssertionConsumerServiceURL="{{ SPReturnUrl }}"
-                    AssertionConsumerServiceIndex="0"
-                    AttributeConsumingServiceIndex="0">
+                    AssertionConsumerServiceURL="{{ SPReturnUrl }}">
 
     <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">{{ Issuer }}</saml:Issuer>
 
-    <saml:Subject>
-        <saml:BaseID/>
-        <saml:SubjectConfirmation Method="{{ Issuer }}">
-            <saml:BaseID/>
-            <saml:SubjectConfirmationData>
-            </saml:SubjectConfirmationData>
-        </saml:SubjectConfirmation>
-    </saml:Subject>
-
-    <samlp:NameIDPolicy Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}" AllowCreate="1"/>
-
-    <saml:Conditions>
-        <saml:Condition/>
-    </saml:Conditions>
-
-    <samlp:RequestedAuthnContext>
-        <saml:AuthnContextClassRef>{{ Issuer }}</saml:AuthnContextClassRef>
-    </samlp:RequestedAuthnContext>
+    <samlp:NameIDPolicy Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}" AllowCreate="true"/>
 
     <samlp:RequestedAuthnContext xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" comparison="{{ ComparisonLevel }}">
         <saml:AuthnContextClassRef xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
             urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
         </saml:AuthnContextClassRef>
     </samlp:RequestedAuthnContext>
-
-    <samlp:Scoping>
-        <samlp:IDPList>
-            <samlp:IDPEntry ProviderID="{{ Issuer }}" Name="string"/>
-            <samlp:GetComplete>{{ Issuer }}</samlp:GetComplete>
-        </samlp:IDPList>
-        <samlp:RequesterID>{{ Issuer }}</samlp:RequesterID>
-    </samlp:Scoping>
 </samlp:AuthnRequest>

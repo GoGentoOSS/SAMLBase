@@ -39,27 +39,27 @@ class IDPMetadata extends MetadataAbstract
         ),
 
         'Metadata' => array(
-            '//md:IDPSSODescriptor' => array(
+            '//{mdNs}IDPSSODescriptor' => array(
                 'Attributes' => array(
                     'protocolSupportEnumeration' => 'Protocol'
                 )
             ),
 
-            '//md:IDPSSODescriptor/md:NameIDFormat' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}NameIDFormat' => array(
                 'Value' => 'NameIDFormat'
             ),
 
-            '//md:IDPSSODescriptor/md:KeyDescriptor[@use="signing"]/ds:KeyInfo/ds:X509Data/ds:X509Certificate' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}KeyDescriptor[@use="signing"]/ds:KeyInfo/ds:X509Data/ds:X509Certificate' => array(
                 'Value' => 'SignCertificate'
             ),
 
-            '//md:IDPSSODescriptor/md:KeyDescriptor[@use="encryption"]/ds:KeyInfo/ds:X509Data/ds:X509Certificate' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}KeyDescriptor[@use="encryption"]/ds:KeyInfo/ds:X509Data/ds:X509Certificate' => array(
                 'Value' => 'EncryptionCertificate'
             ),
         ),
 
         'SingleLogoutService' => array(
-            '//md:IDPSSODescriptor/md:SingleLogoutService' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}SingleLogoutService' => array(
                 'Attributes' => array(
                     'Binding' => 'Binding',
                     'Location' => 'Location'
@@ -69,7 +69,7 @@ class IDPMetadata extends MetadataAbstract
         ),
 
         'ArtifactResolutionService' => array(
-            '//md:IDPSSODescriptor/md:ArtifactResolutionService' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}ArtifactResolutionService' => array(
                 'Attributes' => array(
                     'Binding' => 'Binding',
                     'Location' => 'Location'
@@ -79,7 +79,7 @@ class IDPMetadata extends MetadataAbstract
         ),
 
         'SingleSignOnServiceRedirect' => array(
-            '//md:IDPSSODescriptor/md:SingleSignOnService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"]' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}SingleSignOnService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"]' => array(
                 'Attributes' => array(
                     'Binding' => 'Binding',
                     'Location' => 'Location'
@@ -89,7 +89,7 @@ class IDPMetadata extends MetadataAbstract
         ),
 
         'SingleSignOnServicePost' => array(
-            '//md:IDPSSODescriptor/md:SingleSignOnService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"]' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}SingleSignOnService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"]' => array(
                 'Attributes' => array(
                     'Binding' => 'Binding',
                     'Location' => 'Location'

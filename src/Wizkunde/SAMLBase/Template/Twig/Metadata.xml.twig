@@ -8,12 +8,12 @@
             protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
         <md:KeyDescriptor use="signing">
             <ds:KeyInfo>
-                <ds:KeyName>SP SSO Key</ds:KeyName>
+                <ds:KeyName>{{ ServiceProviderPublicKey }}</ds:KeyName>
             </ds:KeyInfo>
         </md:KeyDescriptor>
         <md:ArtifactResolutionService isDefault="true" index="0"
                                       Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
-                                      Location="https://sp.example.com/SAML2/ArtifactResolution"/>
+                                      Location="{{ BaseURL }}websso/login/process"/>
         <md:NameIDFormat>
             urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         </md:NameIDFormat>
@@ -22,10 +22,10 @@
         </md:NameIDFormat>
         <md:AssertionConsumerService isDefault="true" index="0"
                                      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-                                     Location="https://sp.example.com/SAML2/SSO/POST"/>
+                                     Location="{{ BaseURL }}websso/login/process"/>
         <md:AssertionConsumerService index="1"
                                      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
-                                     Location="https://sp.example.com/SAML2/Artifact"/>
+                                     Location="{{ BaseURL }}websso/login/process"/>
         <md:AttributeConsumingService isDefault="true" index="1">
             <md:ServiceName xml:lang="en">
                 Service Provider Portal
@@ -50,6 +50,6 @@
     </md:Organization>
     <md:ContactPerson contactType="technical">
         <md:SurName>{{ ContactPersonSurName }}</md:SurName>
-        <md:EmailAddress>{{ ContactPersonEmailAddress }}</md:EmailAddress>
+        <md:EmailAddress>mailto:{{ ContactPersonEmailAddress }}</md:EmailAddress>
     </md:ContactPerson>
 </md:EntityDescriptor>

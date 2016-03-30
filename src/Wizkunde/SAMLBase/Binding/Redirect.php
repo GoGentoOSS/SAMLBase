@@ -29,5 +29,8 @@ class Redirect extends BindingAbstract
         $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
 
         header('Location: ' .$targetUrl );
+
+        // Prevent any new headers overriding this one
+        exit;
     }
 }

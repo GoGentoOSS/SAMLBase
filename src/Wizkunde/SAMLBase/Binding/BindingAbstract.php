@@ -12,6 +12,8 @@ use Wizkunde\SAMLBase\Configuration\UniqueID;
  */
 abstract class BindingAbstract implements BindingInterface
 {
+    protected $xpathSignatureNamespace = 'http://www.w3.org/2000/09/xmldsig#';
+
     /**
      *
      */
@@ -226,10 +228,10 @@ abstract class BindingAbstract implements BindingInterface
 
         $requestParameters = '';
         if(count($this->getSettings()->getValue('OptionalURLParameters')) > 0) {
-            $requestParameters = http_build_query($this->getSettings()->getValue('OptionalURLParameters'));
+            $requestParameters = '?' .  http_build_query($this->getSettings()->getValue('OptionalURLParameters'));
         }
 
-        return $url . '?' . $requestParameters;
+        return $url . $requestParameters;
     }
 
     /**
@@ -300,6 +302,10 @@ abstract class BindingAbstract implements BindingInterface
      */
     protected function prepareTemplateForRequest($template)
     {
+        if($this->getProtocolBinding() == self::BINDING_POST) {
+            return base64_encode($template);
+        }
+
         $deflatedRequest = gzdeflate($template);
         $base64Request = base64_encode($deflatedRequest);
         $encodedRequest = urlencode($base64Request);

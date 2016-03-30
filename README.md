@@ -13,7 +13,7 @@ You can sign requests with a certificate. The response can be read, decrypted, v
 
 Thats all!
 
-## Roadmap (Last updated 05-12-2015)
+## Roadmap (Last updated 30-03-2016)
 
     BASICS we have achieved so far
         1. Resolve metadata from an IDP into a PHP array that we can work with
@@ -24,30 +24,27 @@ Thats all!
         6. Templates changed to twig
         7. Use a DIC to provide the classes with the necessary information
         8. Handle a Single Logout Request
-        9. Support SOAP and Artifact binding
+	9. Support AssertionConsumerService over HTTP-Artifact (a SOAP Envelope) with Redirect/POST binding
 
-    01-01-2016
+    Version 1.1.0 (Updated at 30-03-2016)
+        1. Support for SP Initiated Artifact Resolution
+	2. Signing of templates is now back in the proper location as second element in the request template
+
+    Upcoming:
         1. Increase the amount of Unit Tests
         2. Add Scoping and Conditions to AuthnRequest
-        3. Support for SP Initiated Artifact Resolution
-    
-    01-02-2016
-        1. Add AttributeQuery and AttributeResponse
-        2. Find a better way to store the SessionID and RelayState
-        3. Apply Assertions
-        
-    01-02-2016
-        1. Support multiple identifier types (BaseID, NameID, EncryptedID)
-        2. Add Statement Element support
-        
-    01-02-2016
-        1. Add Advice Element support
-        
+        3. Add AttributeQuery and AttributeResponse
+        4. Apply Assertions
+        5. Support multiple identifier types (BaseID, NameID, EncryptedID)
+        6. Add Statement Element support
+        7. Add Advice Element support
+        8. Increase the SAML2 scope compatibility of the library (Continuous, version 1.1.0 has a lot of these already)
+
     FUTURE
         1. Make sure we can be a Attribute Authority (AttributeRequest / AttributeResponse)
-        2. Increase the SAML2 scope compatibility of the library
+	2. Add the SOAP Binding for ACS
         3. Add the URI Binding (never seen this being used in the past)
-        3. Add the PAOS Binding (very tropical, hardly used)
+        4. Add the PAOS Binding (very tropical, hardly used)
 
 ## Examples (relative to package root)
 

@@ -14,7 +14,7 @@ $container->setParameter('MetadataExpirationTime', 604800);
 $container->setParameter('SPReturnUrl', 'http://return.wizkunde.nl/');
 $container->setParameter('ForceAuthn', 'true');
 $container->setParameter('IsPassive', 'false');
-$container->setParameter('NameIDFormat', 'testNameId');
+$container->setParameter('NameIDFormat', 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified');
 $container->setParameter('ComparisonLevel', 'exact');
 
 $container->register('twig_loader', 'Twig_Loader_Filesystem')->addArgument('../src/Wizkunde/SAMLBase/Template/Twig');

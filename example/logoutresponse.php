@@ -32,7 +32,7 @@ $container->register('samlbase_idp_settings', 'Wizkunde\SAMLBase\Configuration\S
         'SPReturnUrl' => 'http://return.wizkunde.nl/',
         'ForceAuthn' => 'true',
         'IsPassive' => 'false',
-        'NameIDFormat' => 'testNameId',
+        'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
         'ComparisonLevel' => 'exact',
         'OptionalURLParameters'   => array(
             'source' => 'saml'

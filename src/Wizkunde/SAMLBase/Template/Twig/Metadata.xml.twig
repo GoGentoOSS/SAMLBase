@@ -13,7 +13,7 @@
         </md:KeyDescriptor>
         <md:ArtifactResolutionService isDefault="true" index="0"
                                       Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
-                                      Location="{{ BaseURL }}websso/login/process"/>
+                                      Location="{{ ACSURL }}"/>
         <md:NameIDFormat>
             urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         </md:NameIDFormat>
@@ -22,10 +22,10 @@
         </md:NameIDFormat>
         <md:AssertionConsumerService isDefault="true" index="0"
                                      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-                                     Location="{{ BaseURL }}websso/login/process"/>
+                                     Location="{{ ACSURL }}"/>
         <md:AssertionConsumerService index="1"
                                      Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
-                                     Location="{{ BaseURL }}websso/login/process"/>
+                                     Location="{{ ACSURL }}"/>
         <md:AttributeConsumingService isDefault="true" index="1">
             <md:ServiceName xml:lang="en">
                 Service Provider Portal

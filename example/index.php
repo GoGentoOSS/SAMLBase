@@ -26,7 +26,7 @@ $container->register('samlbase_idp_settings', 'Wizkunde\SAMLBase\Configuration\S
         'NameID' => 'testNameId',
         'Issuer' => 'http://saml.dev.wizkunde.nl/',
         'MetadataExpirationTime' => 604800,
-        'SPReturnUrl' => 'http://return.wizkunde.nl/',
+        'SPReturnUrl' => 'http://return.wizkunde.nl/response.php',
         'ForceAuthn' => 'true',
         'IsPassive' => 'false',
         'NameIDFormat' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',

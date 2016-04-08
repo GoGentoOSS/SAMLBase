@@ -11,5 +11,10 @@ interface SessionIDInterface
     /**
      * @return string
      */
-    public function getIdFromDocument($xmlData);
+    public function getNameIdFromDocument($xmlData);
+
+    /**
+     * @return string
+     */
+    public function getSessionIdFromDocument($xmlData);
 }

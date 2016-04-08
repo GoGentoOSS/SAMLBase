@@ -81,7 +81,7 @@ if(isset($_REQUEST['SAMLart'])) {
 }
 
 $sessionId = new \Wizkunde\SAMLBase\Configuration\SessionID();
-$sessionId = $sessionId->getIdFromDocument($responseData);
+$sessionId = $sessionId->getSessionIdFromDocument($responseData);
 
 session_start();
 $_SESSION['sso_session_id'] = $sessionId;

@@ -3,8 +3,9 @@
 namespace Wizkunde\SAMLBase\Security;
 
 use Wizkunde\SAMLBase\Certificate;
+use \RobRichards\XMLSecLibs\XMLSecurityDSig;
 
-class Signature extends \XMLSecurityDSig implements SignatureInterface
+class Signature extends XMLSecurityDSig implements SignatureInterface
 {
     protected $certificate = null;
     protected $signingAlgorithm = '';
@@ -63,8 +64,8 @@ class Signature extends \XMLSecurityDSig implements SignatureInterface
      */
     public function addSignature(\DOMDocument $document)
     {
-        $this->setCanonicalMethod(\XMLSecurityDSig::EXC_C14N_COMMENTS);
-        $this->addReference($document, \XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
+        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
+        $this->addReference($document, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
 
         // Always place the signature as a second element, after samlp/Issuer
@@ -81,13 +82,11 @@ class Signature extends \XMLSecurityDSig implements SignatureInterface
      */
     public function signMetadata(\DOMDocument $document)
     {
-        $this->setCanonicalMethod(\XMLSecurityDSig::EXC_C14N_COMMENTS);
-        $this->addReference($document, \XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
+        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
+        $this->addReference($document, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
 
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
         $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(1));
         $this->sign($this->getCertificate()->getPrivateKey());
-
-        var_dump($this->getCertificate()->getPublicKey());die;
     }
 }

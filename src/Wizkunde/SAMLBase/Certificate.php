@@ -2,13 +2,15 @@
 
 namespace Wizkunde\SAMLBase;
 
+use \RobRichards\XMLSecLibs\XMLSecurityKey;
+
 class Certificate
 {
     protected $publicKey = null;
     protected $privateKey = null;
     protected $passphrase = '';
 
-    protected $type = \XMLSecurityKey::RSA_SHA1;
+    protected $type = XMLSecurityKey::RSA_SHA1;
 
     /**
      * Set the passphrase to unlock the private key
@@ -35,9 +37,9 @@ class Certificate
      * @param $publicKey
      * @throws \Exception
      */
-    public function setPublicKey($publicKey, $isFile = false, $type = \XMLSecurityKey::RSA_SHA1, $params = array())
+    public function setPublicKey($publicKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA1, $params = array())
     {
-        $this->publicKey = new \XMLSecurityKey($type, array_merge($params, array('type' => 'public')));
+        $this->publicKey = new XMLSecurityKey($type, array_merge($params, array('type' => 'public')));
         $this->publicKey->loadKey($publicKey, $isFile, true);
 
         $this->certificate = $publicKey;
@@ -59,9 +61,9 @@ class Certificate
      * @param $privateKey
      * @throws \Exception
      */
-    public function setPrivateKey($privateKey, $isFile = false, $type = \XMLSecurityKey::RSA_SHA1, $params = array())
+    public function setPrivateKey($privateKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA1, $params = array())
     {
-        $this->privateKey = new \XMLSecurityKey($type, array_merge($params, array('type' => 'private')));
+        $this->privateKey = new XMLSecurityKey($type, array_merge($params, array('type' => 'private')));
 
         if ($this->passphrase != '') {
             $this->privateKey->passphrase = $this->passphrase;

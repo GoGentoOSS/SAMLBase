@@ -6,7 +6,7 @@
                      IssueInstant="{{ Timestamp }}">
     <saml:Issuer>{{ Issuer }}</saml:Issuer>
     <saml:NameID Format="{{ NameIDFormat }}" NameQualifier="{{ Issuer }}">
-        {{ NameID }}
+        {{ email }}
     </saml:NameID>
-    <samlp:SessionIndex>{{ SessionIndex }}</samlp:SessionIndex>
+    <saml:SessionIndex>{{ SessionID }}</saml:SessionIndex>
 </samlp:LogoutRequest>

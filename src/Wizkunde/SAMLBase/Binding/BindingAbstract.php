@@ -200,7 +200,7 @@ abstract class BindingAbstract implements BindingInterface
      */
     public function setTargetUrlFromMetadata($requestType = 'AuthnRequest')
     {
-        $this->metadataBindingLocation = ($requestType == 'LogoutRequest') ? 'SingleLogoutService' :  $this->metadataBindingLocation;
+        $this->metadataBindingLocation = (in_array($requestType, array('LogoutRequest', 'LogoutResponse'))) ? 'SingleLogoutService' :  $this->metadataBindingLocation;
 
         if ($this->metadataBindingLocation == '' || !isset($this->metadata[$this->metadataBindingLocation])) {
             throw new \Exception('Cant initialize binding, no SingleSignOn binding information is known for the current binding');

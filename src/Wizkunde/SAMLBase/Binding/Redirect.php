@@ -20,13 +20,21 @@ class Redirect extends BindingAbstract
     /**
      * Do a request with the current binding
      */
-    public function request($requestType = 'AuthnRequest')
+    public function request($requestType = 'AuthnRequest', $relayState = '')
     {
         parent::request($requestType);
 
         $this->setProtocolBinding(self::BINDING_REDIRECT);
 
-        $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
+	if($requestType == 'LogoutResponse') {
+        	$targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
+	} else {
+        	$targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
+	}
+
+	if($relayState != '') {
+		$targetUrl .= '&RelayState=' . $relayState;
+	}
 
         header('Location: ' .$targetUrl );
 

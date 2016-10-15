@@ -38,7 +38,7 @@ class Certificate
     public function setPublicKey($publicKey, $isFile = false, $type = \XMLSecurityKey::RSA_SHA1, $params = array())
     {
         $this->publicKey = new \XMLSecurityKey($type, array_merge($params, array('type' => 'public')));
-        $this->publicKey->loadKey($publicKey, $isFile);
+        $this->publicKey->loadKey($publicKey, $isFile, true);
 
         $this->certificate = $publicKey;
     }

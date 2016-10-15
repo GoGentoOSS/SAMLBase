@@ -44,6 +44,16 @@ class Signature extends \XMLSecurityDSig implements SignatureInterface
         return $this->signingAlgorithm;
     }
 
+    public function setPassphrase($passphrase = '')
+    {
+        $this->passphrase = $passphrase;
+    }
+
+    public function getPassphrase()
+    {
+        return $this->passphrase;
+    }
+
     /**
      * Add the signature to the template
      *
@@ -60,5 +70,24 @@ class Signature extends \XMLSecurityDSig implements SignatureInterface
         // Always place the signature as a second element, after samlp/Issuer
         $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(2));
         $this->sign($this->getCertificate()->getPrivateKey());
+    }
+
+    /**
+     * Add the signature to the template
+     *
+     * @param \DOMElement $element
+     * @return bool
+     * @throws \Exception
+     */
+    public function signMetadata(\DOMDocument $document)
+    {
+        $this->setCanonicalMethod(\XMLSecurityDSig::EXC_C14N_COMMENTS);
+        $this->addReference($document, \XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
+
+        $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
+        $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(1));
+        $this->sign($this->getCertificate()->getPrivateKey());
+
+        var_dump($this->getCertificate()->getPublicKey());die;
     }
 }

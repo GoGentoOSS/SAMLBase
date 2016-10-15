@@ -57,6 +57,11 @@ class AuthnResponse
     {
         $responseData = base64_decode($response);
 
+        $inflatedResponseData = @gzinflate($responseData);
+	if($inflatedResponseData != false) {
+	    $responseData = $inflatedResponseData;
+        }
+
         $decryptedDocument = $this->getEncryptionService()->decrypt($responseData);
 
         if ($this->getSignatureService()->verifyDOMDocument($decryptedDocument) == false) {

@@ -1,10 +1,10 @@
 {
     "name": "wizkunde/samlbase",
     "type": "library",
-    "description": "Boilerplate library for SAML2 in PHP",
+    "description": "Library for SAML2 Service Providers in PHP",
     "keywords": ["saml2", "SAML2", "SAMLBase", "PHP", "SSO"],
     "homepage": "https://github.com/Wizkunde/SAMLBase",
-    "license": "LGPL-2.1",
+    "license": "OSL-3.0",
     "authors": [
         {
             "name": "Ron van der Molen",

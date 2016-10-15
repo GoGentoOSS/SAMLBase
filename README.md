@@ -2,58 +2,49 @@ SAMLBase
 =======
 
 ##Introduction
-Build SAML Connections in php object based.
+Build a feature rich SAML Service Provider that is able to communicate to literally any SAML2 Identity Provider.
+It covers almost the full scope of SAML2 and the base is increasing.
 
-##Status
-Currently its possible to dynamically load the metadata, and after that, do a request via a POST or Redirect binding.
-You can sign requests with a certificate. The response can be read, decrypted, verified and attributes can be retrieved.
+The library is used to connect global market leaders to their SAML2 Identity Providers.
+
+##Features
+
+1. Resolve the Metadata from the Identity Provider
+2. Build Service Prodiver Metadata to exchange with the Identity Provider
+3. Authenticate via POST and Redirect Bindings
+4. Assertion Consumer Service
+5. Artifact Resolution with Redirect and POST Bindings using HTTP-Artifact
+6. Handle the Authentication response from the Identity Provider
+7. Single Logout via POST and Redirect
+8. Identity Provider initiated Single Logout
+9. Fetching and mapping of incoming claims (fields)
+10. Sign and Verify all requests
+11. NameID Formats
 
 ##Setup
-    composer install
+    composer require wizkunde/samlbase
 
-Thats all!
-
-## Roadmap (Last updated 30-03-2016)
-
-    BASICS we have achieved so far
-        1. Resolve metadata from an IDP into a PHP array that we can work with
-        2. Do a AuthNRequest via Redirect Binding
-        3. Do a AuthNRequest via POST Binding
-        4. Handle the AuthNResponse
-        5. Pass thru returning attributes and claims
-        6. Templates changed to twig
-        7. Use a DIC to provide the classes with the necessary information
-        8. Handle a Single Logout Request
-	9. Support AssertionConsumerService over HTTP-Artifact (a SOAP Envelope) with Redirect/POST binding
-
-    Version 1.1.0 (Updated at 30-03-2016)
-        1. Support for SP Initiated Artifact Resolution
-	2. Signing of templates is now back in the proper location as second element in the request template
-
-    Upcoming:
-        1. Increase the amount of Unit Tests
-        2. Add Scoping and Conditions to AuthnRequest
-        3. Add AttributeQuery and AttributeResponse
-        4. Apply Assertions
-        5. Support multiple identifier types (BaseID, NameID, EncryptedID)
-        6. Add Statement Element support
-        7. Add Advice Element support
-        8. Increase the SAML2 scope compatibility of the library (Continuous, version 1.1.0 has a lot of these already)
-
-    FUTURE
-        1. Make sure we can be a Attribute Authority (AttributeRequest / AttributeResponse)
-	2. Add the SOAP Binding for ACS
-        3. Add the URI Binding (never seen this being used in the past)
-        4. Add the PAOS Binding (very tropical, hardly used)
+## Coming soon
+    1. Add Scoping and Conditions to AuthnRequest
+    2. Add AttributeQuery and AttributeResponse
+    3. Apply Assertions
+    4. Support multiple identifier types (BaseID, NameID, EncryptedID)
+    5. Add Statement Element support
+    6. Add Advice Element support
+    7. Increase the SAML2 scope compatibility of the library (Continuous, version 1.1.0 has a lot of these already)
+	8. Add the SOAP Binding for ACS
+    9. Add the URI Binding (never seen this being used in the past)
+    10. Add the PAOS Binding (very tropical, hardly used)
 
 ## Examples (relative to package root)
 
+    /example/metadata.php - Service Provider Metadata
     /example/index.php - Example AuthNRequest (Redirect and POST binding)
     /example/response.php - Example AuthNResponse target file (POST Binding)
     /example/attributes.php - WIP AttributeQuery request after being logged in (requires attributequery service on the IDP)
-    /example/logout.php - WIP Logout request
+    /example/logout.php - Logout request
     /example/logoutresponse.php - Example LogoutResponse handling
     
 ## License information
-    This code is released under the LGPL v2.1 license
-    Info about the license can be found here:  https://www.gnu.org/licenses/lgpl-2.1.html
+    This code is released under the OSL v3 license
+    Info about the license can be found here:  https://opensource.org/licenses/OSL-3.0

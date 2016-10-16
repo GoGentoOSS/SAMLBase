@@ -69,8 +69,8 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
 
         // Always place the signature as a second element, after samlp/Issuer
-        $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(2));
         $this->sign($this->getCertificate()->getPrivateKey());
+        $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(2));
     }
 
     /**
@@ -86,7 +86,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         $this->addReference($document, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature'));
 
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
-        $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(1));
         $this->sign($this->getCertificate()->getPrivateKey());
+        $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(1));
     }
 }

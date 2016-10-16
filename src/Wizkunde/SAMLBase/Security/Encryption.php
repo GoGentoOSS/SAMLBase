@@ -3,12 +3,13 @@
 namespace Wizkunde\SAMLBase\Security;
 
 use Wizkunde\SAMLBase\Certificate;
+use \RobRichards\XMLSecLibs\XMLSecEnc;
 
 /**
  * Class Encryption
  * @package Wizkunde\SAMLBase\Security
  */
-class Encryption extends \XMLSecEnc implements EncryptionInterface
+class Encryption extends XMLSecEnc implements EncryptionInterface
 {
     protected $certificate = null;
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace Wizkunde\SAMLBase\Metadata;
+use Symfony\Component\DependencyInjection\SimpleXMLElement;
 
 /**
  * This class automatically maps IDP metadata to the designated values
@@ -99,14 +100,8 @@ abstract class MetadataAbstract
      */
     protected function setNamespaceFromMetadata()
     {
-        $nameSpaces = $this->metadata->getNamespaces(true);
-
-        $this->metadata->registerXPathNamespace('md', $this->xpathMetadataNamespace);
-
-        foreach($nameSpaces as $namespace => $definition) {
-            if($definition == $this->xpathMetadataNamespace) {
-                //$this->setMetadataNamespace($namespace);
-            }
+        foreach($this->metadata->getNamespaces(true) as $key => $namespace) {
+            $this->metadata->registerXpathNamespace($key, $namespace);
         }
     }
 
@@ -117,9 +112,14 @@ abstract class MetadataAbstract
      */
     public function mapMetadata($metadata)
     {
-        $this->metadata = new \SimpleXMLElement($metadata);
+        $newMetadata = str_replace('xmlns="' . $this->xpathMetadataNamespace . '"', '', $metadata);
+        $this->metadata = new \SimpleXMLElement($newMetadata);
 
-        $this->metadata->registerXPathNamespace('md', $this->xpathMetadataNamespace);
+        if($newMetadata != $metadata) {
+            $this->setMetadataNamespace('');
+        }
+
+        $this->setNamespaceFromMetadata();
 
         $mappings = array();
         foreach ($this->xpathMappings as $namespace => $xpathMappings) {

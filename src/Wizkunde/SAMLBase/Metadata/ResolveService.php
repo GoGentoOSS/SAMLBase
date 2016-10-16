@@ -2,7 +2,7 @@
 
 namespace Wizkunde\SAMLBase\Metadata;
 
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 class ResolveService
 {

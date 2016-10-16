@@ -13,6 +13,15 @@
         <md:ArtifactResolutionService isDefault="true" index="0"
                                       Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP"
                                       Location="{{ ACSURL }}"/>
+        <md:SingleLogoutService
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+                Location="{{ SLOURL }}" />
+        <md:SingleLogoutService
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+                Location="{{ SLOURL }}" />
+        <md:SingleLogoutService
+                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
+                Location="{{ SLOURL }}" />
         <md:NameIDFormat>
             urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
         </md:NameIDFormat>
@@ -35,17 +44,6 @@
                     FriendlyName="eduPersonAffiliation">
             </md:RequestedAttribute>
         </md:AttributeConsumingService>
-
-        <md:SingleLogoutService
-                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
-                Location="{{ SLOURL }}" />
-        <md:SingleLogoutService
-                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
-                Location="{{ SLOURL }}" />
-        <md:SingleLogoutService
-                Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact"
-                Location="{{ SLOURL }}" />
-
     </md:SPSSODescriptor>
     <md:Organization>
         <md:OrganizationName xml:lang="en">

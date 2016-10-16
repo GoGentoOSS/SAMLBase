@@ -71,6 +71,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         // Always place the signature as a second element, after samlp/Issuer
         $this->sign($this->getCertificate()->getPrivateKey());
         $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(2));
+        $this->canonicalizeSignedInfo();
     }
 
     /**
@@ -88,5 +89,6 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
         $this->sign($this->getCertificate()->getPrivateKey());
         $this->insertSignature($document->firstChild, $document->firstChild->childNodes->item(1));
+        $this->canonicalizeSignedInfo();
     }
 }

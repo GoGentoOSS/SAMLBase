@@ -26,7 +26,6 @@ class Artifact extends BindingAbstract
         $this->setProtocolBinding(self::BINDING_POST);
 
         $this->getSettings()->setValue('artifact', $artifact);
-        $this->getSettings()->setValue('Destination', $this->getTargetUrl());
 
         $soapRequest = $this->buildEnvelope('ArtifactResolve');
 

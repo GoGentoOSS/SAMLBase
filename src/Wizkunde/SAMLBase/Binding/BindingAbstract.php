@@ -274,6 +274,7 @@ abstract class BindingAbstract implements BindingInterface
                 'ProtocolBinding' => $this->getProtocolBinding(),
                 'UniqueID' => $this->getUniqueIdService()->generate(),
                 'Timestamp' => $this->getTimestampService()->generate()->toFormat(),
+                'Destination' => $this->getTargetUrl()
             ))
         );
 

@@ -15,6 +15,25 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         $this->certificate = $certificate;
     }
 
+    public function verifyDOMDocument($document)
+    {
+        $signatureNode = $this->locateSignature($document);
+
+        /**
+         * No signature was added, it should not fail as this is not a requirement on redirect bindings
+         */
+        if (!$signatureNode) {
+            return true;
+        }
+
+        $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
+        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+        $this->addReference($document->documentElement, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
+
+        return $this->verify($this->getCertificate()->getPublicKey());
+    }
+
+
     public function getCertificate()
     {
         return $this->certificate;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <samlp:AuthnRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
                     xmlns:saml="urn:oasis:names:tc:SAML:2.0:protocol"
-                    ID="{{ UniqueID }}" Version="2.0"
+                    Version="2.0"
                     IssueInstant="{{ Timestamp }}"
                     ForceAuthn="{{ ForceAuthn }}"
                     IsPassive="{{ IsPassive }}"
@@ -12,7 +12,7 @@
 
     <samlp:NameIDPolicy Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}" AllowCreate="true"/>
 
-    <samlp:RequestedAuthnContext xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" comparison="{{ ComparisonLevel }}">
+    <samlp:RequestedAuthnContext xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Comparison="{{ ComparisonLevel }}">
         <saml:AuthnContextClassRef xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
             urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
         </saml:AuthnContextClassRef>

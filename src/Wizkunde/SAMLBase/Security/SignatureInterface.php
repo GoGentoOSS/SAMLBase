@@ -11,12 +11,6 @@ use Wizkunde\SAMLBase\Certificate;
 interface SignatureInterface
 {
     /**
-     * @param $document
-     * @return mixed
-     */
-    public function verifyDOMDocument($document);
-
-    /**
      * @param Certificate $certificate
      * @return mixed
      */

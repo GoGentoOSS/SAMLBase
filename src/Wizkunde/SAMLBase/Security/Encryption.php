@@ -2,6 +2,7 @@
 
 namespace Wizkunde\SAMLBase\Security;
 
+use RobRichards\XMLSecLibs\XMLSecurityKey;
 use Wizkunde\SAMLBase\Certificate;
 use \RobRichards\XMLSecLibs\XMLSecEnc;
 
@@ -40,6 +41,21 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
     }
 
     /**
+     * @param DOMDocument $element
+     * @return DOMNode|null
+     */
+    public function locateEncryptedAssertion($element)
+    {
+        if ($element) {
+            $xpath = new \DOMXPath($element);
+            $query = "//xenc:EncryptedData";
+            $nodeset = $xpath->query($query);
+            return $nodeset->item(0);
+        }
+        return null;
+    }
+
+    /**
      * Decrypt incomming data with our certificate
      *
      * @param $string
@@ -48,7 +64,8 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
      */
     public function decrypt($string)
     {
-        $document = new \DOMDocument($string);
+        $document = new \DOMDocument();
+        $document->loadXML($string);
 
         $encryptedData = $this->locateEncryptedData($document);
 
@@ -60,31 +77,48 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
             return $document;
         }
 
-        $this->setNode($string);
+        $this->setNode($encryptedData);
 
-        $this->type = $encryptedData->getAttribute("Type");
-        if (!$objKey = $this->locateKey()) {
+        $this->type = $encryptedData->getAttribute('Type');
+
+        if (!$objKey = $this->locateKey($encryptedData)) {
             throw new \Exception("Unable to detect the algorithm");
         }
 
         if ($objKeyInfo = $this->locateKeyInfo($objKey)) {
+
+            $inputKeyAlgo = $this->getCertificate()->getPrivateKey()->getAlgorith();
             if ($objKeyInfo->isEncrypted) {
+                $symKeyInfoAlgo = $objKeyInfo->getAlgorith();
+
+                if ($symKeyInfoAlgo === XMLSecurityKey::RSA_OAEP_MGF1P && $inputKeyAlgo === XMLSecurityKey::RSA_1_5) {
+                    $inputKeyAlgo = XMLSecurityKey::RSA_OAEP_MGF1P;
+                }
+
                 $objencKey = $objKeyInfo->encryptedCtx;
-                $objKeyInfo->loadKey($this->getCertificate()->getPublicKey());
+                $objKeyInfo->key = $this->getCertificate()->getPrivateKey()->key;
+
+                $keySize = $objKey->getSymmetricKeySize();
+                if ($keySize === null) {
+                    throw new \Exception('Unknown key size', true);
+                }
+
                 $key = $objencKey->decryptKey($objKeyInfo);
+                if (strlen($key) != $keySize) {
+                    throw new \Exception('Unexpected key size');
+                }
+                $objKey->loadkey($key);
+            } else {
+                $symKeyAlgo = $objKey->getAlgorith();
+                if ($inputKeyAlgo !== $symKeyAlgo) {
+                    throw new \Exception('Algorithm mismatch');
+                }
+                $objKey = $this->getCertificate()->getPrivateKey();
             }
         }
 
-        if (!$objKey->key && empty($key)) {
-            $objKey->loadKey($this->getCertificate()->getPublicKey());
-        }
-
-        if (empty($objKey->key)) {
-            $objKey->loadKey($key);
-        }
-
         $token = NULL;
-        if ($decrypt = $this->decryptNode($objKey, TRUE)) {
+        if ($decrypt = $this->decryptNode($objKey, true)) {
             $output = NULL;
             if ($decrypt instanceof \DOMNode) {
                 if ($decrypt instanceof \DOMDocument) {
@@ -97,6 +131,6 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
             }
         }
 
-        return new \DOMDocument($string);
+        return new \DOMDocument($output);
     }
 }

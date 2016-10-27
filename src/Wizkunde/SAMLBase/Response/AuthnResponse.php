@@ -62,6 +62,9 @@ class AuthnResponse
 	    $responseData = $inflatedResponseData;
         }
 
+        // Remove XML Tag which breaks loading
+        $responseData = str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $responseData);
+
         $decryptedDocument = $this->getEncryptionService()->decrypt($responseData);
 
         if ($this->getSignatureService()->verifyDOMDocument($decryptedDocument) == false) {

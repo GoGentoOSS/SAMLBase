@@ -269,6 +269,7 @@ abstract class BindingAbstract implements BindingInterface
     {
         $settings = $this->getSettings()->getValues();
 
+
         $requestTemplate = $this->getTwigService()->render($requestType . '.xml.twig',
             array_merge($settings, array(
                 'ProtocolBinding' => $this->getProtocolBinding(),

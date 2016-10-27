@@ -27,9 +27,6 @@ class Artifact extends BindingAbstract
 
         $this->getSettings()->setValue('artifact', $artifact);
         
-        // Add a destination element to the AuthnRequest
-        $this->getSettings()->setValue('DestinationElement', 'Destination="' . $this->getTargetUrl() . '"');
-
         $soapRequest = $this->buildEnvelope('ArtifactResolve');
 
         $request = $this->getHttpService()->post($this->getTargetUrl(), null, $soapRequest);

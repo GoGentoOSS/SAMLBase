@@ -10,16 +10,17 @@ The library is used to connect global market leaders to their SAML2 Identity Pro
 ##Features
 
 1. Resolve the Metadata from the Identity Provider
-2. Build Service Prodiver Metadata to exchange with the Identity Provider
+2. Automatic Service Provider Metadata to exchange with the Identity Provider
 3. Authenticate via POST and Redirect Bindings
 4. Assertion Consumer Service
 5. Artifact Resolution with Redirect and POST Bindings using HTTP-Artifact
 6. Handle the Authentication response from the Identity Provider
 7. Single Logout via POST and Redirect
 8. Identity Provider initiated Single Logout
-9. Fetching and mapping of incoming claims (fields)
-10. Sign and Verify all requests
-11. NameID Formats
+9. Attributes mapping
+10. Sign and Verify all requests and metadata
+11. Multiple NameID Formats
+12. Encryption and Decryption
 
 ##Setup
     composer require wizkunde/samlbase

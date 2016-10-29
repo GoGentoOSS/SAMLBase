@@ -2,6 +2,7 @@
 <samlp:LogoutRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
                      xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
                      Version="2.0"
+                     Destination="{{ Destination }}"
                      IssueInstant="{{ Timestamp }}">
     <saml:Issuer>{{ Issuer }}</saml:Issuer>
     <saml:NameID Format="{{ NameIDFormat }}" NameQualifier="{{ Issuer }}">

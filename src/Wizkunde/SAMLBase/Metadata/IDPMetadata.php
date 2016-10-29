@@ -58,8 +58,18 @@ class IDPMetadata extends MetadataAbstract
             ),
         ),
 
-        'SingleLogoutService' => array(
-            '//{mdNs}IDPSSODescriptor/{mdNs}SingleLogoutService' => array(
+        'SingleLogoutServiceRedirect' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}SingleLogoutService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"]' => array(
+                'Attributes' => array(
+                    'Binding' => 'Binding',
+                    'Location' => 'Location'
+                ),
+                'Multiple' => true
+            ),
+        ),
+
+        'SingleLogoutServicePost' => array(
+            '//{mdNs}IDPSSODescriptor/{mdNs}SingleLogoutService[@Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"]' => array(
                 'Attributes' => array(
                     'Binding' => 'Binding',
                     'Location' => 'Location'

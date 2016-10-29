@@ -16,6 +16,7 @@ class Redirect extends BindingAbstract
      * @var string
      */
     protected $metadataBindingLocation = 'SingleSignOnServiceRedirect';
+    protected $metadataSLOLocation = 'SingleLogoutServiceRedirect';
 
     /**
      * Do a request with the current binding
@@ -26,15 +27,15 @@ class Redirect extends BindingAbstract
 
         $this->setProtocolBinding(self::BINDING_REDIRECT);
 
-	if($requestType == 'LogoutResponse') {
-        	$targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
-	} else {
-        	$targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
-	}
+        if($requestType == 'LogoutResponse') {
+                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
+        } else {
+                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
+        }
 
-	if($relayState != '') {
-		$targetUrl .= '&RelayState=' . $relayState;
-	}
+        if($relayState != '') {
+            $targetUrl .= '&RelayState=' . $relayState;
+        }
 
         header('Location: ' .$targetUrl );
 

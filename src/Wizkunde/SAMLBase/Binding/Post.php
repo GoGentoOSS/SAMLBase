@@ -16,13 +16,14 @@ class Post extends BindingAbstract
      * @var string
      */
     protected $metadataBindingLocation = 'SingleSignOnServicePost';
+    protected $metadataSLOLocation = 'SingleLogoutServicePost';
 
     /**
      * Do a request with the current binding
      */
     public function request($requestType = 'AuthnRequest')
     {
-        parent::request();
+        parent::request($requestType);
 
         $this->setProtocolBinding(self::BINDING_POST);
 

@@ -67,6 +67,13 @@ abstract class BindingAbstract implements BindingInterface
     protected $metadataBindingLocation = '';
 
     /**
+     * The Single Logout URL location
+     *
+     * @var string
+     */
+    protected $metadataSLOLocation = '';
+
+    /**
      * The metadata thats used for the binding
      *
      * @var array
@@ -200,7 +207,7 @@ abstract class BindingAbstract implements BindingInterface
      */
     public function setTargetUrlFromMetadata($requestType = 'AuthnRequest')
     {
-        $this->metadataBindingLocation = (in_array($requestType, array('LogoutRequest', 'LogoutResponse'))) ? 'SingleLogoutService' :  $this->metadataBindingLocation;
+        $this->metadataBindingLocation = (in_array($requestType, array('LogoutRequest', 'LogoutResponse'))) ? $this->metadataSLOLocation :  $this->metadataBindingLocation;
 
         if ($this->metadataBindingLocation == '' || !isset($this->metadata[$this->metadataBindingLocation])) {
             throw new \Exception('Cant initialize binding, no SingleSignOn binding information is known for the current binding');
@@ -268,7 +275,6 @@ abstract class BindingAbstract implements BindingInterface
     public function buildRequest($requestType = 'AuthnRequest')
     {
         $settings = $this->getSettings()->getValues();
-
 
         $requestTemplate = $this->getTwigService()->render($requestType . '.xml.twig',
             array_merge($settings, array(

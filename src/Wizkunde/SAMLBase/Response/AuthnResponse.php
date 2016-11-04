@@ -58,8 +58,9 @@ class AuthnResponse
         $responseData = base64_decode($response);
 
         $inflatedResponseData = @gzinflate($responseData);
-	if($inflatedResponseData != false) {
-	    $responseData = $inflatedResponseData;
+
+        if($inflatedResponseData != false) {
+	        $responseData = $inflatedResponseData;
         }
 
         // Remove XML Tag which breaks loading
@@ -67,10 +68,14 @@ class AuthnResponse
 
         $decryptedDocument = $this->getEncryptionService()->decrypt($responseData);
 
+        if($decryptedDocument === false) {
+            $decryptedDocument = new \DOMDocument($responseData);
+        }
+        
         if ($this->getSignatureService()->verifyDOMDocument($decryptedDocument) == false) {
             throw new \Exception('Could not verify Signature');
         }
-
+        
         return $decryptedDocument->version;
     }
 }

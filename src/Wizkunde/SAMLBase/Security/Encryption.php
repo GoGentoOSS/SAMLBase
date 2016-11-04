@@ -69,12 +69,8 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
 
         $encryptedData = $this->locateEncryptedData($document);
 
-        /**
-         * If data was not transmitted encrypted (happens a lot with redirect binding)
-         * Then return the document
-         */
         if (!$encryptedData) {
-            return $document;
+            return false;
         }
 
         $this->setNode($encryptedData);

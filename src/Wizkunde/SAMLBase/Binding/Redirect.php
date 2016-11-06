@@ -25,21 +25,36 @@ class Redirect extends BindingAbstract
     {
         parent::request($requestType);
 
+        $requestData = $this->getRequestData($requestType, $relayState);
+        header('Location: ' . $requestData['url']);
+
+        exit;
+    }
+
+    /**
+     * Get the request URL for the SAML2 request
+     *
+     * @param string $requestType
+     * @param string $relayState
+     * @return array
+     */
+    public function getRequestData($requestType = 'AuthnRequest', $relayState = '')
+    {
         $this->setProtocolBinding(self::BINDING_REDIRECT);
 
         if($requestType == 'LogoutResponse') {
-                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
+            $targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
         } else {
-                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
+            $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
         }
 
         if($relayState != '') {
             $targetUrl .= '&RelayState=' . $relayState;
         }
 
-        header('Location: ' .$targetUrl );
-
-        // Prevent any new headers overriding this one
-        exit;
+        return [
+            'protocol' => 'GET',
+            'url' => $targetUrl
+        ];
     }
 }

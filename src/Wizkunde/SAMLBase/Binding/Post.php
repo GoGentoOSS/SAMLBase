@@ -42,16 +42,4 @@ class Post extends BindingAbstract
 
         return $form;
     }
-
-    public function getRequestData($requestType = 'AuthnRequest', $relayState = '') {
-        $this->setProtocolBinding(self::BINDING_POST);
-
-        return [
-            'protocol' => 'POST',
-            'url' => $this->buildRequestUrl(),
-            'params' => [
-                'SAMLRequest' => (string) $this->buildRequest($requestType)
-            ]
-        ];
-    }
 }

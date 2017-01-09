@@ -11,11 +11,5 @@
 
     <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">{{ Issuer }}</saml:Issuer>
 
-    <samlp:NameIDPolicy Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}" AllowCreate="true"/>
-
-    <samlp:RequestedAuthnContext xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Comparison="{{ ComparisonLevel }}">
-        <saml:AuthnContextClassRef xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
-            urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
-        </saml:AuthnContextClassRef>
-    </samlp:RequestedAuthnContext>
+    <samlp:NameIDPolicy Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}" AllowCreate="true" />
 </samlp:AuthnRequest>

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <samlp:LogoutRequest xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
-                     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
                      Version="2.0"
+                     Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified"
                      Destination="{{ Destination }}"
                      IssueInstant="{{ Timestamp }}"
                      ID="{{ SessionID }}">
-    <saml:Issuer>{{ Issuer }}</saml:Issuer>
-    <saml:NameID Format="{{ NameIDFormat }}" NameQualifier="{{ Issuer }}">
-        {{ email }}
-    </saml:NameID>
-    <saml:SessionIndex>{{ SessionID }}</saml:SessionIndex>
+    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">{{ Issuer }}</saml:Issuer>
+    <saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Format="{{ NameIDFormat }}" SPNameQualifier="{{ Issuer }}">{{ email }}</saml:NameID>
+    <samlp:SessionIndex>{{ SsoId }}</samlp:SessionIndex>
 </samlp:LogoutRequest>

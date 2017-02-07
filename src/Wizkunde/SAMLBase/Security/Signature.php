@@ -10,6 +10,11 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
     protected $certificate = null;
     protected $signingAlgorithm = '';
 
+    public function __construct()
+    {
+	return parent::__construct('ds');
+    }
+
     public function setCertificate(Certificate $certificate)
     {
         $this->certificate = $certificate;

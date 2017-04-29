@@ -53,7 +53,7 @@ abstract class MetadataAbstract
      */
     public function __construct($metadata = '')
     {
-        if ($metadata != '') {
+        if (is_string($metadata) && $metadata != '') {
             $this->mapMetadata($metadata);
         }
     }

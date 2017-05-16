@@ -9,9 +9,9 @@ class ResolveService
     /**
      * Initialize the resolver service
      */
-    public function __construct(Client $client)
+    public function __construct()
     {
-        $this->setClient($client);
+        $this->setClient(new Client);
     }
 
     /**

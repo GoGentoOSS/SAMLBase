@@ -4,7 +4,8 @@
                       Consent="urn:oasis:names:tc:SAML:2.0:consent:unspecified"
                       IssueInstant="{{ Timestamp }}"
                       Destination="{{ Destination }}"
-                      InResponseTo="{{ SsoId }}">
+                      InResponseTo="{{ SsoId }}"
+		      ID="{{ SessionID }}">
     <saml:Issuer xmlns="urn:oasis:names:tc:SAML:2.0:assertion">{{ Issuer }}</saml:Issuer>
     <samlp:Status>
         <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>

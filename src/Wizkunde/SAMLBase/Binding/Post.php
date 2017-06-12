@@ -36,8 +36,10 @@ class Post extends BindingAbstract
 
     protected function buildPostForm($requestType = 'AuthnRequest')
     {
+        $requestParam = ($requestType == 'LogoutResponse') ? 'SAMLResponse' : 'SAMLRequest';
+
         $form = '<form method="POST" action="' . $this->buildRequestUrl() . '" name="postform">';
-        $form .= '<input type="hidden" name="SAMLRequest" value=" ' . (string) $this->buildRequest($requestType) . '">';
+        $form .= '<input type="hidden" name="' . $requestParam . '" value=" ' . (string) $this->buildRequest($requestType) . '">';
         $form .= '</form>';
 
         return $form;

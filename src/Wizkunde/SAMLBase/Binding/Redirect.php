@@ -27,10 +27,12 @@ class Redirect extends BindingAbstract
 
         $this->setProtocolBinding(self::BINDING_REDIRECT);
 
+        $separator = (strpos((string)$this->buildRequestUrl(), '?') > 0) ? '&' : '?';
+
         if($requestType == 'LogoutResponse') {
-                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLResponse=' . $this->buildRequest($requestType);
+                $targetUrl = (string)$this->buildRequestUrl() . $separator . 'SAMLResponse=' . $this->buildRequest($requestType);
         } else {
-                $targetUrl = (string)$this->buildRequestUrl() . '&SAMLRequest=' . $this->buildRequest($requestType);
+                $targetUrl = (string)$this->buildRequestUrl() . $separator . 'SAMLRequest=' . $this->buildRequest($requestType);
         }
 
         if($relayState != '') {
@@ -39,7 +41,6 @@ class Redirect extends BindingAbstract
 
         header('Location: ' .$targetUrl );
 
-        // Prevent any new headers overriding this one
         exit;
     }
 }

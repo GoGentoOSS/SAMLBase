@@ -32,7 +32,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         }
 
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
-        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
         $this->addReference($document->documentElement, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
 
         return $this->verify($this->getCertificate()->getPublicKey());
@@ -94,7 +94,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
     protected function signDocument(\DOMDocument $document, $node)
     {
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
-        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+        $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
         $this->addReference($document->documentElement, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
 
         $this->sign($this->getCertificate()->getPrivateKey());

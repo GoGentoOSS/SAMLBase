@@ -100,6 +100,9 @@ abstract class MetadataAbstract
      */
     protected function setNamespaceFromMetadata()
     {
+        // Ensure the required namespaces are there always
+        $this->metadata->registerXpathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
+
         foreach($this->metadata->getNamespaces(true) as $key => $namespace) {
             $this->metadata->registerXpathNamespace($key, $namespace);
         }
@@ -142,7 +145,7 @@ abstract class MetadataAbstract
                     }
                 } else {
                     if (is_object($data)) {
-                        $mappings[$namespace][$mappedAttribute] = (string)$data;
+                        $mappings[$namespace][$mapping] = (string)$data;
                     }
                 }
             }

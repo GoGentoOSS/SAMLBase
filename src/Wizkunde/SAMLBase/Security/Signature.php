@@ -12,7 +12,9 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
 
     public function __construct()
     {
-	return parent::__construct('ds');
+        $this->setSigningAlgorithm(XMLSecurityDSig::SHA256);
+
+	    return parent::__construct('ds');
     }
 
     public function setCertificate(Certificate $certificate)
@@ -33,7 +35,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
 
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
         $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
-        $this->addReference($document->documentElement, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
+        $this->addReference($document->documentElement, $this->signingAlgorithm, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
 
         return $this->verify($this->getCertificate()->getPublicKey());
     }
@@ -95,7 +97,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
     {
         $this->add509Cert($this->getCertificate()->getPublicKey()->getX509Certificate());
         $this->setCanonicalMethod(XMLSecurityDSig::EXC_C14N_COMMENTS);
-        $this->addReference($document->documentElement, XMLSecurityDSig::SHA1, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
+        $this->addReference($document->documentElement, $this->signingAlgorithm, array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N), array('id_name' => 'ID'));
 
         $this->sign($this->getCertificate()->getPrivateKey());
         $this->insertSignature($document->firstChild, $node);

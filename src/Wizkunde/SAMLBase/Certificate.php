@@ -10,7 +10,7 @@ class Certificate
     protected $privateKey = null;
     protected $passphrase = '';
 
-    protected $type = XMLSecurityKey::RSA_SHA1;
+    protected $type = XMLSecurityKey::RSA_SHA256;
 
     /**
      * Set the passphrase to unlock the private key
@@ -35,9 +35,11 @@ class Certificate
      * Set the public key for this certificate
      *
      * @param $publicKey
-     * @throws \Exception
+     * @param bool $isFile
+     * @param $type
+     * @param array $params
      */
-    public function setPublicKey($publicKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA1, $params = array())
+    public function setPublicKey($publicKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA256, $params = array())
     {
         $this->publicKey = new XMLSecurityKey($type, array_merge($params, array('type' => 'public')));
         $this->publicKey->loadKey($publicKey, $isFile, true);
@@ -59,9 +61,11 @@ class Certificate
      * Set the private key for this certificate
      *
      * @param $privateKey
-     * @throws \Exception
+     * @param bool $isFile
+     * @param $type
+     * @param array $params
      */
-    public function setPrivateKey($privateKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA1, $params = array())
+    public function setPrivateKey($privateKey, $isFile = false, $type = XMLSecurityKey::RSA_SHA256, $params = array())
     {
         $this->privateKey = new XMLSecurityKey($type, array_merge($params, array('type' => 'private')));
 

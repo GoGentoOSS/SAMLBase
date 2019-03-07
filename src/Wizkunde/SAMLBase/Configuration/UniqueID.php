@@ -15,13 +15,14 @@ class UniqueID implements UniqueIDInterface
 
     /**
      * @param string $prefix
+     * @param $algorithm
      * @return string
      */
-    public function generate($prefix = 'SAMLBase')
+    public function generate($prefix = 'SAMLBase', $algorithm = 'sha256')
     {
         $this->setPrefix($prefix);
 
-        return $this->prefix . sha1(uniqid(mt_rand(), true));
+        return $this->prefix . hash($algorithm, uniqid(mt_rand(), true));
     }
 
     /**

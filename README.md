@@ -23,7 +23,7 @@ The library is used to connect global market leaders to their SAML2 Identity Pro
 12. Encryption and Decryption
 
 ##Setup
-    composer require wizkunde/samlbase
+    composer require gogentooss/samlbase
 
 ## Coming soon
     1. Add Scoping and Conditions to AuthnRequest

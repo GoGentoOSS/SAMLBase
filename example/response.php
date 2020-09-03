@@ -20,12 +20,12 @@ if(isset($_REQUEST['SAMLart'])) {
     $responseData = $container->get('response')->decode($_REQUEST['SAMLResponse']);
 }
 
-$sessionId = new \Wizkunde\SAMLBase\Configuration\SessionID();
+$sessionId = new \GoGentoOSS\SAMLBase\Configuration\SessionID();
 $sessionId = $sessionId->getSessionIdFromDocument($responseData);
 
 session_start();
 $_SESSION['sso_session_id'] = $sessionId;
 
-$attributes = new \Wizkunde\SAMLBase\Claim\Attributes();
+$attributes = new \GoGentoOSS\SAMLBase\Claim\Attributes();
 
 var_dump($attributes->getAttributes($responseData));

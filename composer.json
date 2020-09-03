@@ -1,16 +1,16 @@
 {
-    "name": "wizkunde/samlbase",
+    "name": "gogentooss/samlbase",
     "type": "library",
     "description": "Library for SAML2 Service Providers in PHP",
     "keywords": ["saml2", "SAML2", "SAMLBase", "PHP", "SSO"],
-    "homepage": "https://github.com/Wizkunde/SAMLBase",
+    "homepage": "https://github.com/GoGentoOSS/SAMLBase",
     "license": "OSL-3.0",
     "version": "1.3.2",
     "authors": [
         {
             "name": "Ron van der Molen",
-            "email": "ron@wizkunde.nl",
-            "homepage": "http://www.wizkunde.nl",
+            "email": "info@gogento.com",
+            "homepage": "https://gogento.com",
             "role": "CEO"
         }
     ],
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Wizkunde\\SAMLBase": "src/"
+            "GoGentoOSS\\SAMLBase": "src/"
         }
     }
 }

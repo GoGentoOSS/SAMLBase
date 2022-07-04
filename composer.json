@@ -17,7 +17,7 @@
     "require": {
         "symfony/dependency-injection": "~4.4.13",
         "robrichards/xmlseclibs": "~3.1.0",
-        "guzzlehttp/guzzle": "~6.5.5",
+        "guzzlehttp/guzzle": "~7.0",
         "twig/twig": "~2.13.1"
     },
     "autoload": {

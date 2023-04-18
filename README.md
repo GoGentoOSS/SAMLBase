@@ -34,8 +34,6 @@ The library is used to connect global market leaders to their SAML2 Identity Pro
     6. Add Advice Element support
     7. Increase the SAML2 scope compatibility of the library (Continuous, version 1.1.0 has a lot of these already)
 	8. Add the SOAP Binding for ACS
-    9. Add the URI Binding (never seen this being used in the past)
-    10. Add the PAOS Binding (very tropical, hardly used)
 
 ## Examples (relative to package root)
 

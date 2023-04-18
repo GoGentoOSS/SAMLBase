@@ -1,8 +1,8 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Configuration;
-
-use GoGentoOSS\SAMLBase\Configuration\SettingsInterface;
 
 /**
  * Class Settings

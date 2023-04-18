@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Binding;
 
 /**
@@ -35,6 +37,10 @@ class Artifact extends BindingAbstract
         return (string) $response->getBody();
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function sendArtifact()
     {
         $this->setTargetUrlFromMetadata($this->metadataBindingLocation);
@@ -47,6 +53,10 @@ class Artifact extends BindingAbstract
         exit;
     }
 
+    /**
+     * @param $requestType
+     * @return mixed
+     */
     protected function buildEnvelope($requestType = 'ArtifactResolve')
     {
         $requestTemplate = $this->getTwigService()->render($requestType . '.xml.twig',

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 ini_set('display_errors', true);
 
 include_once('../vendor/autoload.php');

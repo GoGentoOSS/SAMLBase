@@ -1,6 +1,10 @@
 <?php
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 
 namespace GoGentoOSS\SAMLBase\Binding;
+
 use GoGentoOSS\SAMLBase\Configuration\Settings;
 use GoGentoOSS\SAMLBase\Configuration\Timestamp;
 use GoGentoOSS\SAMLBase\Configuration\UniqueID;
@@ -80,9 +84,20 @@ interface BindingInterface
      */
     public function request();
 
+    /**
+     * @param $binding
+     * @return mixed
+     */
     public function setProtocolBinding($binding);
 
+    /**
+     * @return mixed
+     */
     public function getProtocolBinding();
 
+    /**
+     * @param $requestType
+     * @return mixed
+     */
     public function buildRequest($requestType = 'AuthnRequest');
 }

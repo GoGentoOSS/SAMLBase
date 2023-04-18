@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Security;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -113,9 +115,7 @@ class Encryption extends XMLSecEnc implements EncryptionInterface
             }
         }
 
-        $token = NULL;
         if ($decrypt = $this->decryptNode($objKey, true)) {
-            $output = NULL;
             if ($decrypt instanceof \DOMNode) {
                 if ($decrypt instanceof \DOMDocument) {
                     $output = $decrypt->saveXML();

@@ -1,9 +1,15 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Response;
 
 class LogoutResponse
 {
+    /**
+     * @param $xmlData
+     * @return array
+     */
     public function getLogoutData($xmlData)
     {
         $element = simplexml_load_string($xmlData);

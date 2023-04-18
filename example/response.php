@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 if(!isset($_POST['SAMLResponse']) && !isset($_GET['SAMLResponse']) && !isset($_REQUEST['SAMLart'])) {
     header('Location: attributes.php');
 }

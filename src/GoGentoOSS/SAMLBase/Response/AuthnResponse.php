@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Response;
 
 use GoGentoOSS\SAMLBase\Security\Encryption;
@@ -52,6 +54,7 @@ class AuthnResponse
      * Handle the response string that we receive
      *
      * @param $response
+     * @throws \Exception
      */
     public function decode($response)
     {

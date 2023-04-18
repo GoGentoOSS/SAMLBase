@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Binding;
 
 /**
@@ -20,6 +22,10 @@ class Redirect extends BindingAbstract
 
     /**
      * Do a request with the current binding
+     *
+     * @param $requestType
+     * @param $relayState
+     * @return void
      */
     public function request($requestType = 'AuthnRequest', $relayState = '')
     {

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Security;
 
 use GoGentoOSS\SAMLBase\Certificate;
@@ -36,7 +38,7 @@ interface SignatureInterface
      * Add the signature to the template
      *
      * @param \DOMElement $element
-     * @return bool
+     * @return void
      * @throws \Exception
      */
     public function addSignature(\DOMDocument $document);

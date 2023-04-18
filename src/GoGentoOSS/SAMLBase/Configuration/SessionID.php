@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Configuration;
 
 /**
@@ -9,7 +11,8 @@ namespace GoGentoOSS\SAMLBase\Configuration;
 class SessionID implements SessionIDInterface
 {
     /**
-     * @param string $document
+     * @param $xmlData
+     * @return string
      */
     public function getIdFromDocument($xmlData)
     {
@@ -20,6 +23,10 @@ class SessionID implements SessionIDInterface
         return (string) current($element->xpath('//saml:Subject/saml:NameID'));
     }
 
+    /**
+     * @param $xmlData
+     * @return string
+     */
     public function getSessionIdFromDocument($xmlData)
     {
         $element = simplexml_load_string($xmlData);

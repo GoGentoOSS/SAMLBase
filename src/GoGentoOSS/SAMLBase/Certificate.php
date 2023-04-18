@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase;
 
 use \RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -76,6 +78,9 @@ class Certificate
         $this->privateKey->loadKey($privateKey, $isFile);
     }
 
+    /**
+     * @return mixed|null
+     */
     public function getPrivateKey()
     {
         return $this->privateKey;

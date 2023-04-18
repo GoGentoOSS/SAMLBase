@@ -1,8 +1,8 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Metadata;
-
-use GoGentoOSS\SAMLBase\Binding\Redirect;
 
 class IDPMetadata extends MetadataAbstract
 {

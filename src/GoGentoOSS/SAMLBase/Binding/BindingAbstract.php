@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Binding;
 
 use GoGentoOSS\SAMLBase\Configuration\Settings;

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Binding;
 
 /**
@@ -34,6 +36,12 @@ class Post extends BindingAbstract
         exit;
     }
 
+    /**
+     * Building the post form to submit a SAML post request
+     *
+     * @param $requestType
+     * @return string
+     */
     protected function buildPostForm($requestType = 'AuthnRequest')
     {
         $requestParam = ($requestType == 'LogoutResponse') ? 'SAMLResponse' : 'SAMLRequest';

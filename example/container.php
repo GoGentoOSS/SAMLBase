@@ -1,6 +1,7 @@
 <?php
-
 /**
+ * @author Ron van der Molen <ron@gogento.com>
+ *
  * For the example we manually build a container with the required settings
  * 
  */

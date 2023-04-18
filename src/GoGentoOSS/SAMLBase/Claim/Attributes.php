@@ -1,9 +1,20 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Claim;
 
+/**
+ * SAML Attributes
+ */
 class Attributes
 {
+    /**
+     * Get the SAML Attributes out of the SAML data
+     *
+     * @param $xmlData
+     * @return array
+     */
     public function getAttributes($xmlData)
     {
         $element = simplexml_load_string($xmlData);

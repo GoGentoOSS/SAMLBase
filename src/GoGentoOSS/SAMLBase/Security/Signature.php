@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Ron van der Molen <ron@gogento.com>
+ */
 namespace GoGentoOSS\SAMLBase\Security;
 
 use GoGentoOSS\SAMLBase\Certificate;
@@ -10,6 +12,9 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
     protected $certificate = null;
     protected $signingAlgorithm = '';
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->setSigningAlgorithm(XMLSecurityDSig::SHA256);
@@ -17,11 +22,20 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
 	    return parent::__construct('ds');
     }
 
+    /**
+     * @param Certificate $certificate
+     * @return void
+     */
     public function setCertificate(Certificate $certificate)
     {
         $this->certificate = $certificate;
     }
 
+    /**
+     * @param $document
+     * @return bool|int
+     * @throws \Exception
+     */
     public function verifyDOMDocument($document)
     {
         $signatureNode = $this->locateSignature($document);
@@ -40,27 +54,43 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
         return $this->verify($this->getCertificate()->getPublicKey());
     }
 
-
+    /**
+     * @return mixed|null
+     */
     public function getCertificate()
     {
         return $this->certificate;
     }
 
+    /**
+     * @param $algorithm
+     * @return void
+     */
     public function setSigningAlgorithm($algorithm)
     {
         $this->signingAlgorithm = $algorithm;
     }
 
+    /**
+     * @return mixed|string
+     */
     public function getSigningAlgorithm()
     {
         return $this->signingAlgorithm;
     }
 
+    /**
+     * @param $passphrase
+     * @return void
+     */
     public function setPassphrase($passphrase = '')
     {
         $this->passphrase = $passphrase;
     }
 
+    /**
+     * @return mixed|string
+     */
     public function getPassphrase()
     {
         return $this->passphrase;
@@ -70,7 +100,7 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
      * Add the signature to the template
      *
      * @param \DOMElement $element
-     * @return bool
+     * @return void
      * @throws \Exception
      */
     public function addSignature(\DOMDocument $document)
@@ -92,6 +122,10 @@ class Signature extends XMLSecurityDSig implements SignatureInterface
 
     /**
      * Sign a SAML2 Document
+     *
+     * @param \DOMDocument $document
+     * @param $node
+     * @throws \Exception
      */
     protected function signDocument(\DOMDocument $document, $node)
     {
